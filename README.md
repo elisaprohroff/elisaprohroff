@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @elisaprohroff
 - 👀 I’m interested in marine biology and ecology
 - 🌱 I’m currently learning coding in R
-- 💞️ I’m looking to collaborate on data analysis in R 
+- 💞️ I’m looking to collaborate on data analysis and data manipulation in R 
 
 <!---
 elisaprohroff/elisaprohroff is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
