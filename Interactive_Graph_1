@@ -34,6 +34,7 @@ FHLOO_data <- read.table("FHLOO TXT - Copy.CSV", header=T, sep=",") %>% head(10)
 # Change character string to date&time
 FHLOO_data$Date_Time <- ymd_hms(FHLOO_data$PDT)
 
+
 class(FHLOO_data$Date_Time)
 
 
