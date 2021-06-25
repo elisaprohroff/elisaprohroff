@@ -1,0 +1,50 @@
+################# INTERACTIVE PLOT ####################
+
+##### set working directory ###############################
+
+rm(list = ls())
+
+setwd('C:/Users/e/Desktop/Kirk REU FHLOO Data')
+
+install.packages("lubridate")
+
+###############load libraries #############################
+library(ggplot2)
+library(scales)
+library(grid)
+library(dplyr)
+library(lubridate)
+library(readxl)
+library(tidyr)
+library(plotly)
+library(dygraphs)
+library(xts)          # To make the convertion data-frame / xts format
+library(tidyverse)
+
+################ Open FHLOO as CSV ######################
+  
+FHLOO <- read.csv('FHLOO TXT - Copy.CSV', na.strings=c(" "," ","NaN"))
+colnames(FHLOO)
+
+#parse date into months?? (group dates into months)
+
+# Read the data 
+FHLOO_data <- read.table("FHLOO TXT - Copy.CSV", header=T, sep=",") %>% head(10)
+
+# Change character string to date&time
+FHLOO_data$Date_Time <- ymd_hms(FHLOO_data$PDT)
+
+class(FHLOO_data$Date_Time)
+
+
+# Create the xts necessary to use dygraph
+don <- xts(x = FHLOO_data$Date_Time, order.by = FHLOO_data$Date_Time) 
+
+
+# Finally the plot
+p <- dygraph(don) %>%
+  dyOptions(labelsUTC = TRUE, fillGraph=TRUE, fillAlpha=0.1, drawGrid = FALSE, colors="#D8AE5A") %>%
+  dyRangeSelector() %>%
+  dyCrosshair(direction = "vertical") %>%
+  dyHighlight(highlightCircleSize = 5, highlightSeriesBackgroundAlpha = 0.2, hideOnMouseOut = FALSE)  %>%
+  dyRoller(rollPeriod = 1)
